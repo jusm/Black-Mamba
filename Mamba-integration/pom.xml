@@ -9,4 +9,64 @@
   <modules>
   	<module>Mamba-webapp</module>
   </modules>
+  <properties>
+		<system.lib.path>src\site\lib</system.lib.path>
+		<jdk.version>1.7</jdk.version>
+		<junit.version>4.9</junit.version>
+		<cxf.version>2.7.8</cxf.version>
+		<spring.version>4.2.5.RELEASE</spring.version>
+		<struts2.version>2.3.16</struts2.version>
+		<hibernate.version>4.2.7.Final</hibernate.version>
+		<unitils.version>3.3</unitils.version>
+		<jackson-version>1.9.13</jackson-version>
+		<json.version>2.2.3</json.version>
+  </properties>
+  <dependencies>
+  		<!-- spring 的jar 依赖 -->
+		<!-- 1、spring核心依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- 2、spring dao层依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- 3、spring web层依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- 3、spring test层依赖 做测试用 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- spring end -->
+  </dependencies>
 </project>
