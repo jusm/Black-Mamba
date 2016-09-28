@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mamba.usm.dao.UsmAdminMapper" >
+  <resultMap id="BaseResultMap" type="com.mamba.usm.entity.UsmAdmin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="login_paw" property="loginPaw" jdbcType="VARCHAR" />
+    <result column="login_count" property="loginCount" jdbcType="BIGINT" />
+    <result column="last_login_date" property="lastLoginDate" jdbcType="TIMESTAMP" />
+    <result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="updatedate" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, login_name, real_name, login_paw, login_count, last_login_date, last_login_ip, 
+    ROLE_ID, updatedate, createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mamba.usm.entity.UsmAdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from usm_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usm_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usm_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mamba.usm.entity.UsmAdminExample" >
+    delete from usm_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mamba.usm.entity.UsmAdmin" >
+    insert into usm_admin (id, login_name, real_name, 
+      login_paw, login_count, last_login_date, 
+      last_login_ip, ROLE_ID, updatedate, 
+      createdate)
+    values (#{id,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{loginPaw,jdbcType=VARCHAR}, #{loginCount,jdbcType=BIGINT}, #{lastLoginDate,jdbcType=TIMESTAMP}, 
+      #{lastLoginIp,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mamba.usm.entity.UsmAdmin" >
+    insert into usm_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="loginPaw != null" >
+        login_paw,
+      </if>
+      <if test="loginCount != null" >
+        login_count,
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date,
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="updatedate != null" >
+        updatedate,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPaw != null" >
+        #{loginPaw,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount,jdbcType=BIGINT},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mamba.usm.entity.UsmAdminExample" resultType="java.lang.Integer" >
+    select count(*) from usm_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update usm_admin
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginName != null" >
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginPaw != null" >
+        login_paw = #{record.loginPaw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginCount != null" >
+        login_count = #{record.loginCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastLoginDate != null" >
+        last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginIp != null" >
+        last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null" >
+        ROLE_ID = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedate != null" >
+        updatedate = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdate != null" >
+        createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update usm_admin
+    set id = #{record.id,jdbcType=INTEGER},
+      login_name = #{record.loginName,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      login_paw = #{record.loginPaw,jdbcType=VARCHAR},
+      login_count = #{record.loginCount,jdbcType=BIGINT},
+      last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      ROLE_ID = #{record.roleId,jdbcType=INTEGER},
+      updatedate = #{record.updatedate,jdbcType=TIMESTAMP},
+      createdate = #{record.createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mamba.usm.entity.UsmAdmin" >
+    update usm_admin
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPaw != null" >
+        login_paw = #{loginPaw,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCount != null" >
+        login_count = #{loginCount,jdbcType=BIGINT},
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedate != null" >
+        updatedate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mamba.usm.entity.UsmAdmin" >
+    update usm_admin
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      login_paw = #{loginPaw,jdbcType=VARCHAR},
+      login_count = #{loginCount,jdbcType=BIGINT},
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=INTEGER},
+      updatedate = #{updatedate,jdbcType=TIMESTAMP},
+      createdate = #{createdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
