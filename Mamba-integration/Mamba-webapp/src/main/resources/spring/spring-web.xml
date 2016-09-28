@@ -14,5 +14,5 @@
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-    <context:component-scan base-package="com.mamba.web.controller" />
+    <context:component-scan base-package="com.mamba.usm.web.controller" />
 </beans>
