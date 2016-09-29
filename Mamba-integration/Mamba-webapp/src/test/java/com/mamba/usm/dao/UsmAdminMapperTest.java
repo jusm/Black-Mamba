@@ -2,8 +2,12 @@ package com.mamba.usm.dao;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.mamba.usm.entity.UsmAdmin;
 import com.mamba.usm.entity.UsmAdminExample;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/spring-dao.xml"})
+@ContextConfiguration(locations = { "classpath:spring/spring-dao.xml","classpath:spring/spring-dubbo-providers.xml"})
 public class UsmAdminMapperTest {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	@Resource
@@ -37,10 +41,10 @@ public class UsmAdminMapperTest {
 		Assert.assertEquals(1, actual);
 	}
 
-	@Test
+//	@Test
 	public void testDeleteByExample() {
 		UsmAdminExample example = new UsmAdminExample();
-		usmAdminMapper.countByExample(example );
+		usmAdminMapper.countByExample(example);
 	}
 
 	@Test
@@ -48,5 +52,9 @@ public class UsmAdminMapperTest {
 		UsmAdminExample example = new UsmAdminExample();
 		usmAdminMapper.countByExample(example );
 	}
-
+	
+	@After
+	public void afterClass() throws IOException {
+		System.in.read();
+	}
 }
